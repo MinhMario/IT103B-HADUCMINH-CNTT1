@@ -1,85 +1,112 @@
-let readerCardIds = [];
-let readerNames = [];
-let borrowedBookCodes = [];
-let overdueDays = [];
+let loginAttempts = 0;
+let isAuthenticated = false;
 
-let totalReaders = prompt("Hôm nay có bao nhiêu bạn đọc bị ghi nhận quá hạn?");
-totalReaders = parseInt(totalReaders);
+do {
+    let userName = prompt("Nhập tài khoản:");
+    let password = prompt("Nhập mật khẩu:");
 
-for (let i = 1; i <= totalReaders; i++) {
-    let id = "";
-    while (true) {
-        id = prompt("Nhập mã thẻ bạn đọc thứ " + i + " (duy nhất):");
-        let isDuplicate = false;
-        for (let j = 0; j < readerCardIds.length; j++) {
-            if (readerCardIds[j] === id) {
-                isDuplicate = true;
-                break;
-            }
-        }
-        if (id !== "" && !isDuplicate) break;
-        alert("Mã thẻ không được để trống và không được trùng lặp!");
-    }
+    if (userName === "admin" && password === "12345") {
+        alert("Đăng nhập thành công!");
+        isAuthenticated = true;
+        break;
+    } else {
+        loginAttempts += 1;
 
-    let name = prompt("Nhập tên bạn đọc:");
-    let codes = prompt("Nhập chuỗi các mã sách đang mượn (cách nhau bởi dấu phẩy):");
-    let days = prompt("Nhập số ngày quá hạn:");
-    days = parseInt(days);
-
-    readerCardIds.push(id);
-    readerNames.push(name);
-    borrowedBookCodes.push(codes);
-    overdueDays.push(days);
-}
-
-console.log("Danh sách bạn đọc quá hạn (" + totalReaders + " người):");
-for (let i = 0; i < readerCardIds.length; i++) {
-    console.log(
-        (i + 1) + ". Mã thẻ: " + readerCardIds[i] +
-        " | Tên: " + readerNames[i] +
-        " | Sách đang mượn: " + borrowedBookCodes[i] +
-        " | Quá hạn: " + overdueDays[i] + " ngày"
-    );
-}
-
-let count10Days = 0;
-let jsPytIds = "";
-let maxDays = overdueDays[0];
-let maxIndex = 0;
-let countWarn = 0;
-
-for (let i = 0; i < readerCardIds.length; i++) {
-    if (overdueDays[i] >= 10) {
-        count10Days++;
-    }
-
-    let currentBooks = borrowedBookCodes[i];
-    if (currentBooks.includes("JS") && currentBooks.includes("PYT")) {
-        if (jsPytIds === "") {
-            jsPytIds += readerCardIds[i];
+        if (userName !== "admin") {
+            alert("Sai Tài khoản! Lần thử: " + loginAttempts + "/3");
         } else {
-            jsPytIds += ", " + readerCardIds[i];
+            alert("Sai Mật khẩu! Lần thử: " + loginAttempts + "/3");
         }
     }
+} while (loginAttempts < 3);
 
-    if (overdueDays[i] > maxDays) {
-        maxDays = overdueDays[i];
-        maxIndex = i;
-    }
+if (isAuthenticated === false) {
+    document.write("Tài khoản đã bị khóa do nhập sai quá 3 lần!");
+} else {
+    let menuChoice;
+    do {
+        menuChoice = prompt(
+            "--- HỆ THỐNG PHÂN TÍCH THƯ VIỆN ---\n" +
+            "1. Phân loại mã số sách\n" +
+            "2. Thiết kế sơ đồ kho\n" +
+            "3. Dự toán phí bảo trì\n" +
+            "4. Tìm mã số sách may mắn\n" +
+            "5. Thoát\n" +
+            "Chọn chức năng (1-5):"
+        );
 
-    if (overdueDays[i] >= 7) {
-        countWarn++;
-    }
-}
+        switch (menuChoice) {
+            case "1":
+                let totalCodes = 0;
+                let scienceBooks = 0;
+                let artBooks = 0;
+                while (true) {
+                    let bookCode = parseInt(prompt("Nhập mã sách (0 để dừng):"));
+                    if (bookCode === 0 || isNaN(bookCode)) {
+                        break;
+                    }
+                    totalCodes += 1;
+                    if (bookCode % 2 === 0) {
+                        scienceBooks += 1;
+                    } else {
+                        artBooks += 1;
+                    }
+                }
+                alert("Tổng mã: " + totalCodes + "\nKhoa học: " + scienceBooks + "\nNghệ thuật: " + artBooks);
+                break;
 
-console.log("Tổng số bạn đọc quá hạn >= 10 ngày: " + count10Days + " người");
-console.log("Các bạn đọc đang mượn cả sách JS* và PYT*: " + (jsPytIds || "Không có"));
-console.log("Bạn đọc có số ngày quá hạn cao nhất: " + readerNames[maxIndex] + " (" + maxDays + " ngày)");
+            case "2":
+                let rows = parseInt(prompt("Nhập số Hàng:"));
+                let cols = parseInt(prompt("Nhập số Cột:"));
+                document.write("SƠ ĐỒ KHO SÁCH:");
+                for (let r = 1; r <= rows; r += 1) {
+                    for (let c = 1; c <= cols; c += 1) {
+                        if (r === c) {
+                            document.write("[" + r + "-" + c + "] (Kệ ưu tiên) &nbsp;&nbsp;");
+                        } else {
+                            document.write("[" + r + "-" + c + "] &nbsp;&nbsp;");
+                        }
+                    }
+                    document.write("<br><br>");
+                }
+                alert("Đã in sơ đồ ra trang web.");
+                break;
 
-if (countWarn === 0) {
-    console.log("Tình hình trả sách hôm nay khá tốt!");
-} else if (countWarn >= 1 && countWarn <= 4) {
-    console.log("Cần gửi nhắc nhở cho một số bạn đọc!");
-} else if (countWarn >= 5) {
-    console.log("Tình trạng quá hạn nghiêm trọng! Cần liên hệ ngay!");
+            case "3":
+                let qty = parseInt(prompt("Số lượng sách hiện có:"));
+                let fee = parseFloat(prompt("Phí bảo trì hiện tại (đ/cuốn):"));
+                let years = parseInt(prompt("Số năm dự toán:"));
+                document.write("DỰ TOÁN PHÍ BẢO TRÌ:");
+                for (let y = 1; y <= years; y += 1) {
+                    let currentTotal = qty * fee;
+                    document.write("Năm " + y + ": " + currentTotal + " VNĐ<br>");
+                    fee += (fee * 0.1);
+                }
+                break;
+
+            case "4":
+                let nRange = parseInt(prompt("Nhập khoảng N:"));
+                let luckyList = "";
+                let luckyCount = 0;
+                for (let i = 1; i <= nRange; i += 1) {
+                    if (i % 3 === 0 && i % 5 !== 0) {
+                        luckyList += i + " ";
+                        luckyCount += 1;
+                    }
+                }
+                alert("Mã may mắn: " + luckyList + "\nTổng cộng: " + luckyCount);
+                break;
+
+            case "5":
+                alert("Hệ thống đang đăng xuất...");
+                break;
+
+            default:
+                if (menuChoice !== null) {
+                    alert("Lựa chọn không hợp lệ!");
+                }
+                break;
+        }
+
+    } while (menuChoice !== "5");
 }
