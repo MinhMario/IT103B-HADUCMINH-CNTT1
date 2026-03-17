@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuẩn bị Tết Nguyên Đán</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f8f4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            width: 420px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #d73030;
+            color: #fff;
+            padding: 24px 24px 18px;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-header p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 18px 20px 12px;
+            background: #fff7e9;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            background: #fff5d9;
+            border-radius: 999px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .task-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #ffe0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .task-name {
+            font-size: 14px;
+            color: #4a3c2a;
+        }
+
+        .task-status {
+            font-size: 12px;
+            color: #b08a4a;
+            font-style: italic;
+        }
+
+        .card-footer {
+            background: #fdf5e6;
+            padding: 10px 20px 12px;
+            border-top: 1px solid #f0e0c5;
+            font-size: 12px;
+            color: #9a7b4a;
+            text-align: center;
+        }
+
+        .card-footer span.dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #c1a37a;
+            margin: 0 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="card-header">
+        <h1>Chuẩn bị Tết Nguyên Đán</h1>
+        <p>Danh sách việc cần làm</p>
+    </div>
+
+    <div class="card-body">
+        <ul class="task-list">
+            <li class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">🌸</div>
+                    <span class="task-name">Mua bánh chưng</span>
+                </div>
+                <span class="task-status">Chưa làm</span>
+            </li>
+
+            <li class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">🌸</div>
+                    <span class="task-name">Dọn nhà đón Tết</span>
+                </div>
+                <span class="task-status">Chưa làm</span>
+            </li>
+
+            <li class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">🌸</div>
+                    <span class="task-name">Gói bánh chưng</span>
+                </div>
+                <span class="task-status">Chưa làm</span>
+            </li>
+
+            <li class="task-item">
+                <div class="task-left">
+                    <div class="task-icon">🌸</div>
+                    <span class="task-name">Trang trí nhà cửa</span>
+                </div>
+                <span class="task-status">Chưa làm</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card-footer">
+        Đã lưu vào localStorage lần đầu tiên
+        <span class="dot"></span>
+        Refresh trang để kiểm tra
+    </div>
+</div>
+<script src="./btvn1.js"></script>
+</body>
+</html>

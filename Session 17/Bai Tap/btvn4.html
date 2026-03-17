@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Công việc chuẩn bị Tết</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+    body {
+        background: #f8f4ec;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .card {
+        width: 480px;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+    }
+    .card-header {
+        background: #d73030;
+        color: #fff;
+        padding: 24px 24px 18px;
+        text-align: center;
+    }
+    .card-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+    .card-header p { font-size: 13px; opacity: 0.9; }
+
+    .card-body {
+        padding: 18px 22px 14px;
+        background: #fff7e9;
+    }
+
+    .task-list { list-style: none; }
+
+    .task-item {
+        background: #fffdf3;
+        border-radius: 999px;
+        padding: 10px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    }
+    .task-item:hover {
+        box-shadow: 0 5px 14px rgba(0, 0, 0, 0.06);
+        transform: translateY(-1px);
+    }
+
+    .task-radio {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid #f0a437;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: #fffaf0;
+        transition: all 0.2s;
+    }
+
+    .task-radio-icon {
+        font-size: 14px;
+        color: #24a844;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.2s;
+    }
+
+    .task-text {
+        font-size: 14px;
+        color: #4a3c2a;
+        flex: 1;
+    }
+
+    /* ==== TRẠNG THÁI ĐÃ LÀM ==== */
+    .task-item.done {
+        background: #e4f6e7;
+    }
+    .task-item.done .task-radio {
+        border-color: #24a844;
+        background: #c5f0cf;
+    }
+    .task-item.done .task-radio-icon {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .task-item.done .task-text {
+        color: #307240;
+        text-decoration: line-through;
+    }
+
+    /* ==== NÚT XÓA ==== */
+    .btn-delete {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #c9a97a;
+        padding: 4px 6px;
+        border-radius: 6px;
+        transition: color 0.2s, background 0.2s;
+        flex-shrink: 0;
+        line-height: 1;
+    }
+    .btn-delete:hover {
+        color: #d73030;
+        background: #fde8e8;
+    }
+    .task-item.done .btn-delete {
+        color: #7ab88a;
+    }
+    .task-item.done .btn-delete:hover {
+        color: #d73030;
+        background: #fde8e8;
+    }
+
+    .card-footer {
+        background: #fdf5e6;
+        padding: 10px 20px 12px;
+        border-top: 1px solid #f0e0c5;
+        font-size: 12px;
+        color: #9a7b4a;
+        text-align: center;
+    }
+
+    .add-task {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 14px 22px 10px;
+        background: #fff7e9;
+    }
+
+    #task-input {
+        flex: 1;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #ead6b7;
+        padding: 0 12px;
+        outline: none;
+        background: #fff;
+    }
+
+    #task-input:focus {
+        border-color: #f0a437;
+        box-shadow: 0 0 0 3px rgba(240, 164, 55, .18);
+    }
+
+    #btn-add-task {
+        height: 40px;
+        min-width: 84px;
+        border: none;
+        border-radius: 10px;
+        background: #f0a437;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    #btn-add-task:hover { filter: brightness(0.97); }
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="card-header">
+        <h1>Công việc chuẩn bị Tết</h1>
+        <p>Click để đánh dấu hoàn thành</p>
+    </div>
+
+    <div class="card-body">
+        <div class="add-task">
+            <input id="task-input" type="text" placeholder="Nhập công việc mới..." />
+            <button id="btn-add-task" type="button">Thêm</button>
+        </div>
+
+        <ul id="task-list">
+            
+        </ul>
+    </div>
+
+    <div class="card-footer">
+        Mọi thay đổi (thêm / đánh dấu / xóa) được lưu tự động vào localStorage • Refresh để kiểm tra
+    </div>
+</div>
+
+<script src="./btvn4.js">
+</script>
+</body>
+</html>
