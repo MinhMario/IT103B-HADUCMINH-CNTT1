@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/login.css">
+</head>
+<body>
+    <h1>Trang đăng nhập</h1>
+     <form action="">
+        <span >Email</span>
+        <input type="text" id="email"><br>
+        <p class="error-email"></p>
+        <span>Mật khẩu</span>
+        <input type="text" id="password"><br>
+        <p class="error-login">Tên đăng nhập hoặc mật khẩu không đúng</p>
+        <button id="btn-add" onclick="login(event)">Đăng nhập</button>
+        <p>Bạn chưa co tài khoản,<a href="./register.html">Đăng ký</a></p>
+     </form>
+     <script src="../js/login.js"></script>
+</body>
+</html>

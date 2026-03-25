@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    box-sizing:border-box;
+    margin: 0;
+}
+span{
+    display: inline-block;
+    width: 200px;
+}
+.error-name{
+    color:red;
+    margin-left: 200px;
+    display:none;
+}
+.error-email{
+    color: red;
+    display: none;
+     margin-left: 200px;
+}
+.error-pass{
+    color: red;
+    display: none;
+     margin-left: 200px;
+}
+.confirm-pass{
+     color: red;
+    display: none;
+     margin-left: 200px;
+}
